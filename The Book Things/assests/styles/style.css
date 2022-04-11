@@ -1,0 +1,128 @@
+/* body
+{
+margin: 80px;
+padding: 0px;
+background-image: url('static/images/k5.jpg');
+ background-color: rgb(185, 211, 138);
+font-family: Arial, Helvetica, sans-serif;
+background-size: cover;
+} */
+/*.login-img{ 
+    height:265vh;
+    width:202.5vh;
+    background-image: url('static/images/k4.jpg');
+    background:linear-gradient(rgba(214, 25, 25, 0.5),#009688),url('static/images/k4.jpg');
+   background-color: rgb(185, 211, 138);
+    opacity:5;
+    background-size:cover;
+    background-position:center;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+    background-attachment: fixed;
+   }*/
+.login
+{
+        width: 400px;  
+        overflow: hidden;  
+        margin: auto;  
+        /* margin: auto 0px 0px auto;   */
+        padding: 80px;  
+        background: transparent;  
+        border-radius: 10px ; 
+        background-color:white;
+        opacity: 0.9;
+        /* align-items: center;
+        align-content: center; */
+}
+/* h1
+{
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    
+text-align: center;
+color: red;
+padding: 20px;
+} */
+label
+{
+    color: black;
+    font-size: 18px;
+    margin-left: -33px;
+}
+#uname
+{
+    width: 325px;
+    height: 30px;
+    border-radius: 30px;
+    padding-left: 8px;
+    flex: 1;
+    background-color:blue;
+    flex-direction: row;
+    border-color:green;    
+    margin-top: 5px;
+    margin-left: -38px;
+    /* margin-right: 8px; */
+    align-items: center;
+    margin-right: auto; 
+    color: black;
+    background-color: transparent;
+} 
+/* #pass
+{  
+    width: 350px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+}  */
+#log{  
+    width: 120px;  
+    height: 35px;  
+    border: none;  
+    border-radius: 10px;
+    font-size: larger;  
+    background-color:green;
+    padding-left: 7px;  
+    color: rgb(4, 27, 18);
+} 
+#check{
+    margin-left: -33px;
+}
+span{  
+    color: black;  
+    font-size: 15px;  
+} 
+#regi
+{
+    float: left;
+    width: 160px;
+    height: 30px;
+    /* border: none; */
+    background-color: rgb(42, 74, 221);
+    border-radius: 10px;
+    padding-left: 7px;
+    font-size: large;
+    margin-left: -30px;
+    color: white;
+}
+#link
+{
+    width: 160px;
+    height: 30px;
+    /* border: none; */
+    background-color: red;
+    border-radius: 10px;
+    padding-left: 7px;
+    font-size: large;
+    color: black;
+} 
+.row{
+    flex: 1;
+    flex-direction: row;
+    /* background-color: darkcyan; */
+    width: 335px;
+    margin-left:-30px;
+}
+a{  
+    font-style:bold;  
+}

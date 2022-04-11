@@ -1,0 +1,144 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+<link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+<!-- <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+<style>
+body
+{
+   margin: 80px;
+   padding: 0px;
+   background-image: url("{% static 'images/k5.jpg' %}");
+   font-family: Arial, Helvetica, sans-serif;
+   background-size: cover;
+ }
+
+</style> 
+</head>
+<body>
+  <div class="main"> 
+    <nav>
+      <div class="wrapper" style="margin-top: -80px;">
+        <div class="logo"><a href="#">The BookThings</a></div>
+        <input type="radio" name="slider" id="menu-btn">
+        <input type="radio" name="slider" id="close-btn">
+        <ul class="nav-links">
+          <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+       
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="{% url 'collection' %}">Collections</a></li>
+          <!-- <li>
+            <a href="#" class="desktop-item">Dropdown Menu</a>
+            <input type="checkbox" id="showDrop">
+            <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+            <ul class="drop-menu">
+              <li><a href="#">Drop menu 1</a></li>
+              <li><a href="#">Drop menu 2</a></li>
+              <li><a href="#">Drop menu 3</a></li>
+              <li><a href="#">Drop menu 4</a></li>
+            </ul>
+          </li> -->
+          <li>
+            <a href="#" class="desktop-item">Books</a>
+            <input type="checkbox" id="showMega">
+            <div class="mega-box">
+              <label for="showMega" class="mobile-item">Mega Menu</label>
+            <div class="content"  style="height: 250px;">
+                <div class="row" style="margin-left: 5px;">
+                  <img src="{% static 'images/k1.jpg' %}" alt="">
+                </div>
+                <div class="row">
+                  <header>Genre</header>
+                  <ul class="mega-links">
+                    <!-- <li><a href="#">Horror</a></li> -->
+                    <!-- <li><a href="#">Comedy</a></li> -->
+                    <!-- <li><a href="#">Business cards</a></li> -->
+                    <!-- <li><a href="#">Custom logo</a></li> -->
+                  </ul>
+                </div>
+                <div class="row">
+                  <!-- <header>Email Services</header> -->
+                  <ul class="mega-links">
+                    {% for i in cat1 %}
+                    <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                     
+                    <!-- <li><a href="#">Web Marketing</a></li> -->
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="row">
+                  <!-- <header>Security services</header> -->
+                  <ul class="mega-links">
+                    {% for i in cat2 %}
+                    <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                     
+                    {% endfor %}
+                    <!-- <li><a href="#">Website design</a></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- <li><a href="#">Feedback</a></li> -->
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          
+          <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+        </ul>
+        <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+      </div>
+      
+    </nav>
+</div>
+    <!-- <div class="navbar">
+        <ul>
+          <li><a href="#" class="head">TheBookThings</a></li>
+        </ul>
+        <nav>
+          <ul>
+            <b>
+             <li><a href="{% url 'home' %}">HOME</a></li>
+             <li><a href="#">COLLECTIONS</a></li>
+             <li><a href="#">BOOKS</a></li>
+             <li><a href="{% url 'contact' %}">CONTACT</a></li>
+             <li><a href="{% url 'register' %}">REGISTER</a></li>
+             <li><a href="{% url 'login' %}">LOGIN</a></li>
+            </b>
+       
+         </ul>
+        </nav>
+       <form class="search" action="#">
+       <input type="text" placeholder="Search.." name="search">
+       <input type="submit" value="search">
+       </form>
+       <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img>
+      </div>   -->
+    <br><br><br>
+    <div class="login">
+      <form id="login" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+          <label><b>Username</b></label>
+          <input type="text" name="uname" id="uname" placeholder="abc@xyz.org">
+          <br><br>
+          <label><b>Password</b></label>
+          <input type="password" name="pass" id="uname" placeholder="password">
+          <br><br>
+          <input type="checkbox" id="check">
+          <span>Remember me</span>
+          <br><br>
+          <center><input type="submit" name="log" id="log" value="LOGIN"></center>
+          <br><br>
+          <div class="row">
+          <a href="{% url 'register' %}"><input type="button" name="reg" id="regi" value="New User"></a>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          <a href="#"><input type="button" name="link" id="link" value="Forgot Password"></a>
+        </div>
+        </form>
+    </div>
+</body>
+</html>

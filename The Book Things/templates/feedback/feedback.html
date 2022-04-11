@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>Home | Feedback page</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style_fb.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/rating.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="style_fb.css"> -->
+    <style>
+body
+{
+    /* margin: 200px; */
+    padding: 10px;
+    background-size: cover;
+    background-image: url("{% static 'images/k5.jpg' %}");
+    font-family: helvetica;
+    text-align: center;
+}
+    </style>
+</head>
+<body>
+    <h1><u>FEEDBACK</u></h1>
+    <div class="feedback" style="height:500px;background-color: white;">
+    <form id="Feedback" method="POST" action="{% url 'feedback' %}">
+        {% csrf_token %}
+        <label><b>NAME</b></label><br>
+        <input type="text" name="nam" id="nam" placeholder="Your Full Name" required>
+        <br><br>
+        <label><b>EMAIL</b></label><br>
+        <input type="email" name="email" id="nam" placeholder="abc@xyz.org" required>
+        <br><br>
+        <label><b>Rate Us</b></label>
+        <div class="rating">
+            <input id="star-1" type="checkbox" name="rating" value="5"/>
+            <label for="star-1"></label>
+            <input id="star-2" type="checkbox" name="rating" value="4"/>
+            <label for="star-2"></label>
+            <input id="star-3" type="checkbox" name="rating" value="3"/>
+            <label for="star-3"></label>
+            <input id="star-4" type="checkbox" name="rating" value="2"/>
+             <label for="star-4"></label>
+             <input id="star-5" type="checkbox" name="rating" value="1"/>
+             <label for="star-5"></label>
+       </div>
+
+        <br><br><br><br>
+        <label><b>YOUR FEEDBACK</b></label><br>
+        <input type="text"  id="fb" name="fb" cols="50"  placeholder="type your feedback" required></input>
+        <br><br><br><br>
+        <input type="submit" name="f" id="f" value="SUBMIT">
+    </form>   
+    </div> 
+</body>

@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Us</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/style_cont.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="style_cont.css">
+        <link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+        <style>
+          body
+          {
+              margin: 80px;
+              padding: 0px;
+              margin-top: -40px;
+              background-image: url("{% static 'images/k5.jpg' %}");
+              background-size:cover;
+              font-family: helvetica;
+          }
+           </style>
+    </head>
+     
+    <body>
+        <div class="main"> 
+            <nav>
+              <div class="wrapper" style="margin-top: -110px;">
+                <div class="logo"><a href="#">The BookThings</a></div>
+                <input type="radio" name="slider" id="menu-btn">
+                <input type="radio" name="slider" id="close-btn">
+                <ul class="nav-links">
+                  <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+               
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <li><a href="{% url 'collection' %}">Collections</a></li>
+                  <!-- <li>
+                    <a href="#" class="desktop-item">Dropdown Menu</a>
+                    <input type="checkbox" id="showDrop">
+                    <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+                    <ul class="drop-menu">
+                      <li><a href="#">Drop menu 1</a></li>
+                      <li><a href="#">Drop menu 2</a></li>
+                      <li><a href="#">Drop menu 3</a></li>
+                      <li><a href="#">Drop menu 4</a></li>
+                    </ul>
+                  </li> -->
+                  <li>
+                    <a href="#" class="desktop-item">Books</a>
+                    <input type="checkbox" id="showMega">
+                    <div class="mega-box">
+                      <label for="showMega" class="mobile-item">Mega Menu</label>
+                    <div class="content">
+                        <div class="row">
+                          <img src="{% static 'images/k1.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                          <header>Genre</header>
+                          <ul class="mega-links">
+                            <!-- <li><a href="#">Horror</a></li> -->
+                            <!-- <li><a href="#">Comedy</a></li> -->
+                            <!-- <li><a href="#">Business cards</a></li> -->
+                            <!-- <li><a href="#">Custom logo</a></li> -->
+                          </ul>
+                        </div>
+                        <div class="row">
+                          <!-- <header>Email Services</header> -->
+                          <ul class="mega-links">
+                            {% for i in cat1 %}
+                            <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                             
+                            <!-- <li><a href="#">Web Marketing</a></li> -->
+                            {% endfor %}
+                          </ul>
+                        </div>
+                        <div class="row">
+                          <!-- <header>Security services</header> -->
+                          <ul class="mega-links">
+                            {% for i in cat2 %}
+                            <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                             
+                            {% endfor %}
+                            <!-- <li><a href="#">Website design</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- <li><a href="#">Feedback</a></li> -->
+                  <li><a href="{% url 'register' %}">Register</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  
+                  <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+                </ul>
+                <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+              </div>
+              
+            </nav>
+        </div>
+        <h1><center>CONTACT US</center></h1><br><br><br>
+        {% if name %}
+        <div style="background-color: rgb(223, 245, 242);width: 400px;height: 200px;margin-left: 500px;margin-right: auto;margin-top:auto;padding: 53px;">
+        <center><h2 style="color:green;margin-top: 50px;">Thanks {{name.title}}</h2>
+        <p style="color:blue;">We have received your mail and will respond shortly.....</p></center>
+         </div>
+        {% else %}
+        <div class="cont">
+            <form id="cont" method="POST" action="{% url 'contact' %}">
+              {% csrf_token %}  
+              <label><b>Your Full Name</b></label><br>
+                <input type="text" name="nam" id="nami" placeholder="Your Full Name" required>
+        <br><br>
+        <label><b>Email</b></label><br>
+        <input type="email" name="email" id="nami" placeholder="abc@xyz.org" required>
+        <br><br>
+        <label><b>Your Query</b></label>
+            <textarea placeholder="What do you want to talk about?" id="issue" name="issue" required ></textarea>
+            <center> <Input type="button" name="con" id="con" value="Send"></center>
+        </form>
+        </div>
+        {% endif %}
+    </body>
+</html>

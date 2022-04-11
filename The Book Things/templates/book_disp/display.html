@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <title>Book_name</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style_dis.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style_fb.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/rating.css' %}">
+    <style>
+        .main{
+              height:-10vh;
+              padding-left: 3%;
+              padding-right: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div class="main"> 
+        <nav>
+          <div class="wrapper" style="background-color: brown;margin-left: 70px;">
+            <div class="logo"><a href="#">The BookThings</a></div>
+            <input type="radio" name="slider" id="menu-btn">
+            <input type="radio" name="slider" id="close-btn">
+            <ul class="nav-links">
+              <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+           
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'contact' %}">Contact</a></li>
+              <li><a href="{% url 'collection' %}">Collections</a></li>
+              <li>
+                <a href="#" class="desktop-item">Books</a>
+                <input type="checkbox" id="showMega">
+                <div class="mega-box">
+                  <label for="showMega" class="mobile-item">Mega Menu</label>
+                <div class="content"  style="height: 250px;">
+                    <div class="row" style="margin-left: 5px;">
+                      <img src="{% static 'images/k1.jpg' %}" alt="">
+                    </div>
+                    <div class="row">
+                      <header>Genre</header>
+                      <ul class="mega-links">
+                        
+                      </ul>
+                    </div>
+                    <div class="row">
+                      <ul class="mega-links">
+                        {% for i in cat1 %}
+                        <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                         
+                        {% endfor %}
+                      </ul>
+                    </div>
+                    <div class="row">
+                      <ul class="mega-links">
+                        {% for i in cat2 %}
+                        <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                         
+                        {% endfor %}
+                        
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+              <li><a href="{% url 'login' %}">Login</a></li>
+              
+              <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+            </ul>
+            <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+          </div>
+       </nav>
+      </div>
+     <br><br>
+    <div class="display">
+        
+        <div class="cat">
+            <img src="{{book_view.image.url}}" alt="bookcat" class="bookcat"></img>
+        </div>
+
+        <div class="dis">
+            <h1 style="margin-left: -30px;">{{book_view.name}}</h1>
+            <br>
+            {% if book_view.bestseller %}
+            <span id="b1">BESTSELLER</span>
+            {% endif %}
+            {% if book_view.bestforchildren %}
+            <span id="b2">NON FICTION</span>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+            <label>{{book_view.auther}}</label>
+            <br>
+            
+            <br>
+            <span id="b3">{{book_view.category}}</span>
+            <br>
+            <br>
+            <br>
+            <br>
+            <label>Rs.{{book_view.price}}</label><br><br><br>
+            <!-- <input type="button" name="b4" id="b4" value="Add to cart"> -->
+            <div class="button" style="margin: auto; margin-left: -12px;">
+              <a href="{{book_view.purchase_link}}" style="padding-left: 20px;width: 110px;height: 45px;background-color: green;"><span></span>Buy Now</a>
+            </div>
+            <br>
+            <br>
+            {% if br != 0 %}
+            <label>Rating: {{br}}/5.0</label>
+            {% endif %}
+        </div>
+        <div class="disp">
+            <h3>___________________________________________________________________________________________________________</h3>
+            <p>{{book_view.description}}</p>
+        </div>
+        
+    </div>
+    <br><br><br><br>
+    <center><h2 style="color: brown;">Give Rating To The Book</h2>
+    <div class="book-star-rating">
+      <form id="Feedback" method="POST" action="{% url 'bookrating' book_view.id %}">
+        {% csrf_token %}
+        <!-- <input type="number" name="nam" id="nam" placeholder="{{book_view.id}}" required> -->
+        <br><br>
+        
+        <label><b>Rate Us</b></label>
+        <div class="rating">
+            <input id="star-1" type="checkbox" name="rating" value="5"/>
+            <label for="star-1"></label>
+            <input id="star-2" type="checkbox" name="rating" value="4"/>
+            <label for="star-2"></label>
+            <input id="star-3" type="checkbox" name="rating" value="3"/>
+            <label for="star-3"></label>
+            <input id="star-4" type="checkbox" name="rating" value="2"/>
+             <label for="star-4"></label>
+             <input id="star-5" type="checkbox" name="rating" value="1"/>
+             <label for="star-5"></label>
+       </div>
+
+        <br><br><br><br>
+        
+        <input type="submit" name="f" id="f" value="SUBMIT">
+    </form>   
+    </div></center>
+    <div style="height: 60px;">
+
+    </div>
+</body>

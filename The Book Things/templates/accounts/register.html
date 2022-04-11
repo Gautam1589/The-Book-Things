@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Page</title>
+   
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/style_reg.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="style_reg.css">
+        <link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+        <style>
+          body
+         {
+             margin: 80px;
+             /* padding: 30px; */
+             background-image: url("{% static 'images/k5.jpg' %}");
+             background-size: cover;
+             font-family: helvetica;
+         }
+         </style>
+         </head>
+<body>
+
+  <div class="main"> 
+    <nav>
+      <div class="wrapper" style="margin-top: -80px;">
+        <div class="logo"><a href="#">The BookThings</a></div>
+        <input type="radio" name="slider" id="menu-btn">
+        <input type="radio" name="slider" id="close-btn">
+        <ul class="nav-links">
+          <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+       
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="{% url 'collection' %}">Collections</a></li>
+          <!-- <li>
+            <a href="#" class="desktop-item">Dropdown Menu</a>
+            <input type="checkbox" id="showDrop">
+            <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+            <ul class="drop-menu">
+              <li><a href="#">Drop menu 1</a></li>
+              <li><a href="#">Drop menu 2</a></li>
+              <li><a href="#">Drop menu 3</a></li>
+              <li><a href="#">Drop menu 4</a></li>
+            </ul>
+          </li> -->
+          <li>
+            <a href="#" class="desktop-item">Books</a>
+            <input type="checkbox" id="showMega">
+            <div class="mega-box">
+              <label for="showMega" class="mobile-item">Mega Menu</label>
+            <div class="content">
+                <div class="row" style="margin-left: 5px;">
+                  <img src="{% static 'images/k1.jpg' %}" alt="">
+                </div>
+                <div class="row">
+                  <header>Genre</header>
+                  <ul class="mega-links">
+                    <!-- <li><a href="#">Horror</a></li> -->
+                    <!-- <li><a href="#">Comedy</a></li> -->
+                    <!-- <li><a href="#">Business cards</a></li> -->
+                    <!-- <li><a href="#">Custom logo</a></li> -->
+                  </ul>
+                </div>
+                <div class="row">
+                  <!-- <header>Email Services</header> -->
+                  <ul class="mega-links">
+                    {% for i in cat1 %}
+                    <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                     
+                    <!-- <li><a href="#">Web Marketing</a></li> -->
+                    {% endfor %}
+                  </ul>
+                </div>
+                <div class="row">
+                  <!-- <header>Security services</header> -->
+                  <ul class="mega-links">
+                    {% for i in cat2 %}
+                    <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                     
+                    {% endfor %}
+                    <!-- <li><a href="#">Website design</a></li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- <li><a href="#">Feedback</a></li> -->
+          <li><a href="{% url 'register' %}">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          
+          <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+        </ul>
+        <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+      </div>
+      
+    </nav>
+</div>
+    <!-- <div class="navbar">
+        <ul>
+          <li><a href="#" class="head">TheBookThings</a></li>
+        </ul>
+        <nav>
+          <ul>
+            <b>
+             <li><a href="{% url 'home' %}">HOME</a></li>
+             <li><a href="#">COLLECTIONS</a></li>
+             <li><a href="#">BOOKS</a></li>
+             <li><a href="{% url 'contact' %}">CONTACT</a></li>
+             <li><a href="{% url 'register' %}">REGISTER</a></li>
+             <li><a href="{% url 'login' %}">LOGIN</a></li>
+            </b>
+       
+         </ul>
+        </nav>
+       <form class="search" action="#">
+       <input type="text" placeholder="Search.." name="search">
+       <input type="submit" value="search">
+       </form>
+       <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img>
+      </div>   -->
+
+
+<div class="register">
+  {% include 'alerts.html' %}
+  <h1><u>REGISTRATION</u></h1>
+    <form id="register" method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+        <label><b>First Name</b></label><br>
+        <input type="text" name="fnam" id="nam" placeholder="Your First Name" required>
+        <br><br>
+        <label><b>Last Name</b></label><br>
+        <input type="text" name="lnam" id="nam" placeholder="Your Last Name" required>
+        <br><br>
+        <label><b>Username</b></label><br>
+        <input type="text" name="unam" id="nam" placeholder="Your Username Name" required>
+        <br><br>
+        <label><b>Email</b></label><br>
+        <input type="email" name="email" id="nam" placeholder="abc@xyz.org" required>
+        <br><br>
+        <label><b>Password</b></label><br>
+        <input type="password" name="pass" id="nam" placeholder="password">
+        <br><br>
+        <label><b>Confirm Password</b></label><br>
+        <input type="password" name="cpass" id="nam" placeholder="Enter password again">
+        <br><br>
+         <center>
+   <label for="agree"><b><li>I agree to the terms and conditions:</b></label>
+   <input type="checkbox" name="agree"></li><br>
+   <input type="submit" name="reg" id="reg" value="Register"></center>
+</form>
+</div>
+</body>
+</html>

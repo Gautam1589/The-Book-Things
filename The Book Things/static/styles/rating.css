@@ -1,0 +1,40 @@
+.rating input{
+display:none;
+}
+.rating{
+  direction: rtl;
+}
+.rating label{
+  display: inline-block;
+  width: 50px;
+  cursor: pointer;
+  position: relative;
+}
+.rating label:before{
+  /* content: "\2729"; */
+   content: "\2605"; 
+   /* content: "\2730"; */
+  position: absolute;
+  font-size: 50px;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  color: rgb(231, 220, 220);
+}
+.rating label:after{
+  /* content: "\2729"; */
+   content: "\2605"; 
+   /* content: "\2730"; */
+  position: absolute;
+  font-size: 50px;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  color:yellow;
+  opacity: 0;
+}
+.rating label:hover:after,
+.rating label:hover ~ label:after,
+.rating input:checked ~ label:after{
+opacity: 1;
+}

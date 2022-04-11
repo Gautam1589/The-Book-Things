@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contact Us</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/style_cont.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+        <!-- <link rel="stylesheet" type="text/css" href="style_cont.css">
+        <link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+        <style>
+          body
+          {
+              margin: 80px;
+              padding: 0px;
+              margin-top: -40px;
+              background-image: url("{% static 'images/k5.jpg' %}");
+              background-size:cover;
+              font-family: helvetica;
+          }
+           </style>
+    </head>
+     
+    <body>
+        <div class="main"> 
+            <nav>
+              <div class="wrapper" style="margin-top: -110px;">
+                <div class="logo"><a href="#">The BookThings</a></div>
+                <input type="radio" name="slider" id="menu-btn">
+                <input type="radio" name="slider" id="close-btn">
+                <ul class="nav-links">
+                  <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+               
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
+                  <li><a href="{% url 'collection' %}">Collections</a></li>
+                  <!-- <li>
+                    <a href="#" class="desktop-item">Dropdown Menu</a>
+                    <input type="checkbox" id="showDrop">
+                    <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+                    <ul class="drop-menu">
+                      <li><a href="#">Drop menu 1</a></li>
+                      <li><a href="#">Drop menu 2</a></li>
+                      <li><a href="#">Drop menu 3</a></li>
+                      <li><a href="#">Drop menu 4</a></li>
+                    </ul>
+                  </li> -->
+                  <li>
+                    <a href="#" class="desktop-item">Books</a>
+                    <input type="checkbox" id="showMega">
+                    <div class="mega-box">
+                      <label for="showMega" class="mobile-item">Mega Menu</label>
+                    <div class="content">
+                        <div class="row">
+                          <img src="{% static 'images/k1.jpg' %}" alt="">
+                        </div>
+                        <div class="row">
+                          <header>Genre</header>
+                          <ul class="mega-links">
+                            <!-- <li><a href="#">Horror</a></li> -->
+                            <!-- <li><a href="#">Comedy</a></li> -->
+                            <!-- <li><a href="#">Business cards</a></li> -->
+                            <!-- <li><a href="#">Custom logo</a></li> -->
+                          </ul>
+                        </div>
+                        <div class="row">
+                          <!-- <header>Email Services</header> -->
+                          <ul class="mega-links">
+                            {% for i in cat1 %}
+                            <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                             
+                            <!-- <li><a href="#">Web Marketing</a></li> -->
+                            {% endfor %}
+                          </ul>
+                        </div>
+                        <div class="row">
+                          <!-- <header>Security services</header> -->
+                          <ul class="mega-links">
+                            {% for i in cat2 %}
+                            <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                             
+                            {% endfor %}
+                            <!-- <li><a href="#">Website design</a></li> -->
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <!-- <li><a href="#">Feedback</a></li> -->
+                  {% if user.is_authenticated %} 
+                  <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                  <li style="color:gray;"><a href="#">({{user.first_name.title}})</a></li>
+                  <!-- <h3 style="color:gray;background-color:white;">({{user.first_name.title}})</h3> -->
+                  {% else %} 
+                  <li><a href="{% url 'register' %}">Register</a></li>
+                  <li><a href="{% url 'login' %}">Login</a></li>
+                  {% endif %}
+                  <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+                </ul>
+                <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+              </div>
+              
+            </nav>
+        </div>
+        <h1><center>DONATE BOOK</center></h1><br><br><br>
+        {% if name %}
+        <div style="background-color: rgb(223, 245, 242);width: 400px;height: 200px;margin-left: 500px;margin-right: auto;margin-top:auto;padding: 53px;">
+        <center><h2 style="color:green;margin-top: 50px;">Thanks {{name.title}}</h2>
+        <p style="color:blue;">We have received your mail and will respond shortly.....</p></center>
+         </div>
+        {% else %}
+        <div class="cont" style="height: 900px;">
+            <form id="cont" method="POST" enctype="multipart/form-data" action="{url 'bookdonate'}" >
+              <!-- {% csrf_token %} 
+              {{ form.as_p }} 
+              <button type="submit">Upload</button> -->
+              {% csrf_token %}  
+              <label><b>Full Name</b></label><br>
+                <input type="text" name="nam" id="nami" placeholder="Your Full Name" required>
+        <br><br>
+        <label><b>Email</b></label><br>
+        <input type="email" name="email" id="nami" placeholder="abc@xyz.org" required>
+        <br><br>
+        <label><b>Mobile No.</b></label><br>
+        <input type="number" name="num" id="nami" placeholder="Your Mobile Number" required>
+        <br><br>
+        <label><b>Full Address(H.No.,Street,City,State,Country)</b></label><br>
+        <textarea placeholder="Write your full address" id="issue" name="addr" required ></textarea>
+        <br><br>
+        <label><b>Pincode</b></label><br>
+        <input type="number" name="pin" id="nami" placeholder="Your Pin Code" required>
+        <br><br>
+        <label><b>Book Full Name</b></label><br>
+        <input type="text" name="bname" id="nami" placeholder="Book Full Name" required>
+        <br><br>
+        <label><b>Auther Name</b></label><br>
+        <input type="text" name="aname" id="nami" placeholder="Auther Full Name" required>
+        <br><br>
+        <label><b>Genre</b></label><br>
+        <input type="text" name="gname" id="nami" placeholder="Book Genre Name" required>
+        <br><br>
+        <label><b>Book Image</b></label>
+        <input type="file" name="fname" id="nami" placeholder="Book Genre Name" required>
+        <center> <Input type="submit" name="con" id="con" value="Send"></center>
+        
+        </form>
+        </div>
+
+        
+        {% endif %}
+    </body>
+</html>

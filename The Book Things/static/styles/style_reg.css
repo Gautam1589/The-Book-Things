@@ -1,0 +1,118 @@
+/* body
+{
+    margin: 80px;
+    padding: 30px; 
+    background-image: url('k5.jpg');
+    background-size: cover;
+    font-family: helvetica;
+} */
+.register h1
+{
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;    
+text-align: center;
+color: black;
+padding: 30px;
+}
+h1 u{
+    text-decoration: none;
+}
+.register label
+{
+    color: black;
+    font-size: 18px;
+}
+.register
+{
+        width: 500px;
+        flex: 1;
+        flex-direction: row;  
+        overflow: hidden; 
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 80px;
+        margin-bottom: auto;
+        /* display: flex; */
+        /* padding-top: 130px;   
+        padding-left: 50px;  
+        padding-right: 50px; 
+        padding-bottom: 10px;  */
+        padding: 10px;
+        /* margin: -50px 0px 0px 400px;  //rgb(236, 231, 231) */ 
+        background: white;      
+        border-radius: 10px ; 
+        align-content: center;
+        align-items: center;
+        opacity: 0.9;
+}
+#nam
+{
+    
+    width:  485px;  
+    height: 30px;   flex: 1;
+    flex-direction: row;
+    border-color:green;  
+    border-radius: 30px;  
+    padding-left: 8px;
+    margin-top: 5px;
+    /* margin-left: 5px; */
+    /* margin-right: 8px; */
+    align-items: center;
+    margin-right: auto;
+    background-color: transparent;
+    color:black;
+}
+/* #email
+{
+    width: 550px;  
+    height: 30px;  
+    border-color: silver;  
+    border-radius: 30px;  
+    padding-left: 8px;
+    background-color: transparent;
+    color:rgb(254, 255, 252);
+}
+#pass
+{
+    width: 550px;  
+    height: 30px;    
+    border-color: silver;  
+    border-radius: 30px;  
+    padding-left: 8px;
+    background-color: transparent;
+    color:rgb(254, 255, 252);
+}
+#cpass
+{
+    width: 550px;  
+    height: 30px;  
+    border-color: silver;  
+    border-radius: 30px;  
+    padding-left: 8px;
+    background-color: transparent;
+    color:rgb(254, 255, 252); 
+}
+#phone
+{
+    width: 550px;  
+    height: 30px;  
+    border-color: silver;  
+    border-radius: 30px;  
+    padding-left: 8px;
+    background-color: transparent;
+    color:rgb(254, 255, 252);
+} */
+#reg
+{
+    float: center;
+    width: 150px;
+    height: 40px;
+    border: none;
+    background-color:green;
+    border-radius: 15px;
+    padding-left: 8px;
+    font-size: larger;
+    color:black;
+}
+::placeholder{
+    color: black;
+}

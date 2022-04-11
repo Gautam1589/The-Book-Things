@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/styleslider.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+    <!-- <link rel="stylesheet" href="styleslider.css" /> -->
+    <!-- <link rel="stylesheet" type="text/css" href="homestyle.css"> -->
+    <title>{{categ}}</title>
+  </head>
+  <body>
+    <div class="main"> 
+      <nav>
+        <div class="wrapper" style="background-color: brown;margin-left: 70px;">
+          <div class="logo"><a href="#">The BookThings</a></div>
+          <input type="radio" name="slider" id="menu-btn">
+          <input type="radio" name="slider" id="close-btn">
+          <ul class="nav-links">
+            <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+         
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'collection' %}">Collections</a></li>
+            <li>
+              <a href="#" class="desktop-item">Books</a>
+              <input type="checkbox" id="showMega">
+              <div class="mega-box">
+                <label for="showMega" class="mobile-item">Mega Menu</label>
+              <div class="content"  style="height: 250px;">
+                  <div class="row" style="margin-left: 5px;">
+                    <img src="{% static 'images/k1.jpg' %}" alt="">
+                  </div>
+                  <div class="row">
+                    <header>Genre</header>
+                    <ul class="mega-links">
+                      
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <ul class="mega-links">
+                      {% for i in cat1 %}
+                      <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                       
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <ul class="mega-links">
+                      {% for i in cat2 %}
+                      <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                       
+                      {% endfor %}
+                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            
+            <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+          </ul>
+          <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+     </nav>
+    </div>
+      <div style="padding-top: 200px;padding-left: 100px;">
+        <h1>{{categ}}</h1><br><br>
+          <ul style="list-style-type: none;">
+            
+        {% for k in infohorror %}
+        
+    
+        <li class="item-b" style="float: left;">
+          <div class="box" style="width: 280px;">
+            <div class="slide-img" style="height: 280px;">
+              <img src="{{k.image.url}}" alt="{{k.name}}" />
+              <div class="overlay">
+                <a href="{% url 'oneview' k.id %}" class="buy-btn">Buy Now</a>
+              </div>
+            </div>
+            <div class="detail-box" style="background-color: white;opacity: 0.8; height: 110px;">
+              <div class="type">
+                <a href="{% url 'oneview' k.id %}">{{k.name}}</a>
+                <span>{{k.auther}}</span>
+              </div>
+              <a href="{% url 'oneview' k.id %}" class="price">Rs.{{k.price}}</a>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+       
+       
+      </ul>
+    
+  </div> 
+  </body>
+</html>

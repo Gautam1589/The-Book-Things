@@ -1,0 +1,407 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta  name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Online Book Store | Home</title>
+    </head>
+     <link rel="stylesheet" type="text/css" href="{% static 'styles/homestyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/styleslider.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="homestyle.css"> 
+    <link rel="stylesheet" href="styleslider.css" /> -->
+    <script src="{% static 'js/menubox.js' %}"></script>
+    <style>
+    .main{ height:280vh;
+     width:202.5vh;
+     /* background-image: url('k4.jpg'); */
+     background:linear-gradient(rgba(214, 25, 25, 0.5),#009688),url('static/images/k4.jpg'); 
+     /* background:linear-gradient(rgba(214, 25, 25, 0.5),#009688); */
+     opacity:5;
+     background-size:cover;
+     background-position:center;
+     padding-left: 5%;
+     padding-right: 5%;
+     box-sizing: border-box;
+     /* position: relative; */
+     background-attachment: fixed;
+     margin-left: -40px;
+    }
+  
+     </style> 
+    <body>
+      <div class="main">
+      <nav>
+        <div class="wrapper">
+          <div class="logo"><a href="#">The BookThings</a></div>
+          <input type="radio" name="slider" id="menu-btn">
+          <input type="radio" name="slider" id="close-btn">
+          <ul class="nav-links">
+            <label for="close-btn" class="btn close-btn"><i class="fas fa-times"></i></label>
+         
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+            <li><a href="{% url 'collection' %}">Collections</a></li>
+           
+            <!-- <li>
+              <a href="#" class="desktop-item">Dropdown Menu</a>
+              <input type="checkbox" id="showDrop">
+              <label for="showDrop" class="mobile-item">Dropdown Menu</label>
+              <ul class="drop-menu">
+                <li><a href="#">Drop menu 1</a></li>
+                <li><a href="#">Drop menu 2</a></li>
+                <li><a href="#">Drop menu 3</a></li>
+                <li><a href="#">Drop menu 4</a></li>
+              </ul>
+            </li> -->
+            <li>
+              <a href="#" class="desktop-item">Books</a>
+              <input type="checkbox" id="showMega">
+              <div class="mega-box">
+                <label for="showMega" class="mobile-item">Mega Menu</label>
+              <div class="content">
+                  <div class="row">
+                    <img src="{% static 'images/k1.jpg' %}" alt="">
+                  </div>
+                  <div class="row">
+                    <header>Genre</header>
+                    <ul class="mega-links">
+                      <!-- <li><a href="#">Horror</a></li> -->
+                      <!-- <li><a href="#">Comedy</a></li> -->
+                      <!-- <li><a href="#">Business cards</a></li> -->
+                      <!-- <li><a href="#">Custom logo</a></li> -->
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <!-- <header>Email Services</header> -->
+                    <ul class="mega-links">
+                      {% for i in cat1 %}
+                      <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                       
+                      <!-- <li><a href="#">Web Marketing</a></li> -->
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div class="row">
+                    <!-- <header>Security services</header> -->
+                    <ul class="mega-links">
+                      {% for i in cat2 %}
+                      <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                       
+                      {% endfor %}
+                      <!-- <li><a href="#">Website design</a></li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <!-- <li><a href="#">Feedback</a></li> -->
+            {% if user.is_authenticated %} 
+            <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+            <li style="color:gray;"><a href="#">({{user.first_name.title}})</a></li>
+            <!-- <h3 style="color:gray;background-color:white;">({{user.first_name.title}})</h3> -->
+            {% else %} 
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+            <!-- <img src="{% static 'images/k2.png' %}" alt="Cart" class="cart"></img> -->
+          </ul>
+          <label for="menu-btn" class="btn menu-btn"><i class="fas fa-bars"></i></label>
+        </div>
+        
+      </nav>
+     
+        <!-- <div class="bodymiddle"> -->
+           <div class="two">
+           <!---<h1>BOOKS</h1>-->
+             <p>World Largest Book Store</p>
+          </div>
+        <center>
+        <div class="button">
+            <a href="{% url 'collection' %}"><span></span>Buy Now</a>
+            {% if user.is_authenticated %} 
+            <a href="{% url 'bookdonate' %}"><span></span>Donate Books</a>
+            {% else %}
+            <a href="{% url 'collection' %}"><span></span>Search More</a>
+            {% endif %}
+        </div>
+        
+        </center>
+        <div class="searchbox">
+          <form class="search" action="#">
+            <input type="text" placeholder="Search here.." name="search">
+            <input type="submit" value="search">
+          </form></div>
+      <!-- </div> -->
+        <div class="title1">
+          <center>
+          <h1>Latest Books</h1></center></br></br>
+          <ul style="list-style-type: none;">
+            {% for i in info %}
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;margin-right: 10px;">
+              <div class="slide-img">
+                <img src="{{i.image.url}}" alt="" />
+                <div class="overlay">
+                  <a href="{% url 'oneview' i.id %}" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8; height: 100px;">
+                <div class="type">
+                  <a href="{% url 'oneview' i.id %}">{{i.name}}</a>
+                  <span>{{i.auther}}</span>
+                </div>
+                <a href="{% url 'oneview' i.id %}" class="price">Rs.{{i.price}}</a>
+              </div>
+            </div>
+          </li>
+          {% endfor %}
+          <!-- <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li>
+          <li class="item-c" style="float: left;">
+            <div class="box" style="margin-top: 40px;">
+              <div class="slide-img">
+                <img src="j1.jpg" alt="" />
+                <div class="overlay">
+                  <a href="#" class="buy-btn">Buy Now</a>
+                </div>
+              </div>
+              <div class="detail-box" style="background-color: white;opacity: 0.8;">
+                <div class="type">
+                  <a href="#">Nike Tshirt</a>
+                  <span>V-Neck T-shirt</span>
+                </div>
+                <a href="#" class="price">Rs.3051</a>
+              </div>
+            </div>
+          </li> -->
+        </ul>
+        <!-- <div class="collections">
+          <img src="{% static 'images/kj1.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+
+        <div class="collections">
+          <img src="{% static 'images/kj2.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/kj3.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/kj4.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/kj5.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/kj6.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/kj7.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        <div class="collections">
+          <img src="{% static 'images/k8.jpg' %}" alt="HARRY POTTER AND THE PHILOSOPHER'S STONE" class="image"></img>
+        </div>
+        <div class="bookname">
+          <h3>BookName</h3>
+        </div>
+        <div class="bookprice">
+          <div class="b1"><h3>BookPrice</h3></div>
+          <div class="b2"><button type="button">ADD TO CART</button></div>
+        </div>
+        </div> -->
+          
+        </div>
+
+        <center><div class="genre">
+          <h1>Genre</h1>
+          <h3>____________________________________________________________________________________</h3>
+      
+          <div class="genre-content">
+
+            <div class="genre-row" >
+              <!-- <header>Email Services</header> -->
+              <ul class="genremega-links">
+                {% for i in cat %}
+                <li><a href="{% url 'catfunction' i.catname %}">{{i.catname}}</a></li>
+                <!-- <li><a href="#">Action</a></li>
+                <li><a href="#">Horror</a></li>
+                <li><a href="#">Adventure</a></li>
+                <li><a href="#">Romance</a></li>
+                <li><a href="#">Comedy</a></li> -->
+                <!-- <li><a href="#">Web Marketing</a></li> -->
+                {% endfor %}
+              </ul>
+            </div>
+             
+          </div>
+        
+      
+      
+      
+        </div></center>
+
+        <main>
+       <!--featrures-->
+        <section id="Feature">
+           <div class="title2">
+               <p>FEATURE</p>&nbsp;
+               <h1>Why Choose Us</h1>
+               
+           </div>
+           <p style="font-size:larger;align-content: center;">&quot; This E-commerce book website is just made for the curious readers who want to purcahse Books. Now, with TheBookThings it's easier to buy books with the comfort of your home. Don't need to rush out at the stores and getting worried about the stock and availibility. We provide you the facility to buy latest available books online and not only this, it also gives you the chance to do something about the needy ones, to help them with what you can. Now, you don't need to find people who need your books beacuse you can donate them your books without any charges and that all through just one click on your screen. &quot;</p>
+        </section>
+       </main>
+      <footer>
+        <a  style="margin-left:auto; margin-right: auto;" href="#">&copy; 2021&nbsp;|&nbsp;The Book Things</a>
+      </footer>
+    </body>
+</html>
